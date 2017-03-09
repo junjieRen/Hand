@@ -1,0 +1,275 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib prefix="bc" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>员工管理</title>
+<style type="text/css">
+#s td{line-height: 60px;}
+</style>
+</head>
+<body>
+    <div class="message-list list-container">
+        <header class="listview-header media" id="head">
+            <ul class="list-inline list-mass-actions pull-left">
+                <li>
+                	<a id="staffAdd" href="#">
+                        <i class="sa-list-add" title="这是增加"></i>
+                    </a>
+                </li>
+                <li class="show-on" style="display: none;">
+                         <a href="" title="Delete" class="tooltips">
+                             <i class="sa-list-delete"></i>
+                         </a>
+                     </li>
+                 </ul>
+                 <div class="media-body" id="select">
+					<input class="main-search" type="text" id="input" style="width:85%">
+				</div>
+         </header>
+    </div>
+   
+    <div class="block-area" id="tableStriped">
+	    <div class="table-responsive overflow">
+	        <table class="tile table table-bordered table-striped" id="s">
+	            <thead>
+	                <tr>
+	                    <th>id</th>
+	                    <th>员工编号</th>
+	                    <th>员工姓名</th>
+	                    <th>员工性别</th>
+	                    <th>员工职位</th>
+	                    <th style="padding-left: 1.5%">员工头像</th>
+	                    <th style="padding-left: 3.2%">员工身份证号</th>
+	                    <th style="padding-left: 2.1%">联系方式</th>
+	                    <th style="padding-left: 5%">邮箱</th>
+	                    <th>学历</th>
+	                    <th style="padding-left: 5.5%">卡号</th>
+	                    <th style="padding-left: 3%">地址</th>
+	                    <th>员工状态 </th>
+	                </tr>
+	            </thead>
+	        </table>
+	    </div>
+	</div>
+	<div id="add">
+		<h4 style="margin-left: 45%">员工增加</h4>
+		<div class="col-md-4" style="margin-left: 33%;margin-top: 2%">
+            <input class="form-control input-sm m-b-10" placeholder="请输入您的姓名" type="text" id="s_name">
+        </div>
+        <div class="form-group m-b-10" style="position: absolute;top:35%;left:45%" id="s_sex">
+           <label class="radio-inline" id="s_man">
+               <span class="checkableBox checkableBox-radio">    
+                   <input type="radio" class="validate[required]" name="group[group3]" value="男" id="s_s">
+               </span>
+				男
+           </label>
+           <label class="radio-inline"  id="s_women">
+               <span class="checkableBox checkableBox-radio"> 
+                   <input type="radio" class="validate[required]" name="group[group3]" value="女" id="s_s">
+               </span>
+				女
+           </label>
+       </div>
+       <div class="fileupload fileupload-new" data-provides="fileupload" style="position: absolute;top:39%;left:40%" id="file">
+            <div class="fileupload-preview thumbnail form-control" id="show"></div>
+            <div id="btn">
+                <span class="btn btn-file btn-alt btn-sm">
+                    <span class="fileupload-new">上传头像</span>
+                    <span class="fileupload-exists" style="margin-left: 25px;margin-right: 25px">替换</span>
+                    <input type="file" id="s_photo"/>
+                </span>
+                <a href="#" class="btn fileupload-exists btn-sm" data-dismiss="fileupload" style="width: 100px" id="delete">删除</a>
+            </div>
+       </div>	 
+        <div class="col-md-4" style="margin-left: 33%;margin-top: 7%" id="s_identitycard">
+            <input class="form-control input-sm m-b-10" placeholder="请输入您身份证号" type="text" id="s_ident">
+        </div>
+        <div class="col-md-4 m-b-15" style="margin-left: 33%;margin-top: 1%">
+	     <div class="form-group">
+             <select class="form-control input-sm" id="p_id">
+				<option class="form-control input-sm" style="color: black">请选择您的部门</option>
+			 </select>
+         </div>                                                   
+	 	</div>
+        <div class="col-md-4" style="margin-left: 33%;margin-top: 1%">
+            <input class="form-control input-sm m-b-10" placeholder="请输入您联系电话" type="text" id="s_phone">
+        </div>
+        <div class="col-md-4" style="margin-left: 33%;margin-top: 1%">
+            <input class="form-control input-sm m-b-10" placeholder="请输入您的邮箱" type="email" id="s_mail"> 
+        </div>
+        <div class="col-md-4 m-b-15" style="margin-left: 33%;margin-top: 1%">
+	     <div class="form-group">
+             <select class="form-control input-sm" id="s_education">
+				<option class="form-control input-sm" style="color: black">请选择您的学历</option>
+				<option class="form-control input-sm" style="color: black" value="专科">专科</option>
+				<option class="form-control input-sm" style="color: black" value="本科">本科</option>
+				<option class="form-control input-sm" style="color: black" value="硕士">硕士</option>
+				<option class="form-control input-sm" style="color: black" value="博士">博士</option>
+			</select>
+         </div>                                                   
+	 	</div>
+	 	<div class="col-md-4" style="margin-left: 33%;margin-top: 0%">
+            <input class="form-control input-sm m-b-10" placeholder="请输入您的银行卡号" type="text" id="s_clip">
+        </div>
+        <div class="col-md-4" style="margin-left: 33%;margin-top: 1%">
+            <input class="form-control input-sm m-b-10" placeholder="请输入您的地址" type="text" id="s_address">
+        </div>
+	</div>
+	<a style="font-size: 100px;position: absolute;top:45%;left:8%;opacity:0.3" href="#" id="return">
+       <span class="fa fa-reply"></span>
+    </a>
+    <a style="font-size: 100px;position: absolute;top:45%;right:9%;opacity:0.3" href="#" id="ok">
+    	<span class="fa fa-check"></span></a>
+    <div class="btn-group" style="padding-left: 35%" id="paging">
+		<button type="button" class="btn btn-md btn-alt" title="上一页"><<</button>
+		<button type="button" class="btn btn-md btn-alt">首页</button>
+		<button type="button" class="btn btn-md btn-alt">1</button>
+		<button type="button" class="btn btn-md btn-alt">2</button>
+		<button type="button" class="btn btn-md btn-alt">3</button>
+		<button type="button" class="btn btn-md btn-alt">4</button>
+		<button type="button" class="btn btn-md btn-alt">5</button>
+		<button type="button" class="btn btn-md btn-alt">尾页</button>
+		<button type="button" class="btn btn-md btn-alt" title="下一页">>></button>
+    </div>
+        <script src="js/fileupload.min.js"></script> <!-- File Upload -->
+        <!-- All JS functions -->
+        <script src="js/functions.js"></script>
+<script type="text/javascript">
+	function loading() {
+		$.ajax({
+		    cache: false,
+		    type: "POST",
+		    url:"${pageContext.request.contextPath}/getAllStaff.do",
+		    data:$(this).closest("form").serialize(),
+		    async: false,
+		    dataType:"json",
+		    error: function(request) {
+		        alert("Connection error");
+		    },
+		    success: function(respone) {
+		    	for (var i = 0; i < respone.length; i++) {
+					$("#s").append("<tbody><tr><td align=\"center\">"+respone[i].s_id+"</td><td align=\"center\">"+respone[i].s_number+"</td><td align=\"center\">"+respone[i].s_name+"</td><td align=\"center\">"+respone[i].s_sex+"</td><td align=\"center\">"+respone[i].p_name+"</td><td align=\"center\"><img src="+respone[i].s_photo+"></td><td align=\"center\">"+respone[i].s_identityCard+"</td><td align=\"center\">"+respone[i].s_phone+"</td><td align=\"center\">"+respone[i].s_mail+"</td><td align=\"center\">"+respone[i].s_education+"</td><td align=\"center\">"+respone[i].s_clip+"</td><td align=\"center\">"+respone[i].s_address+"</td><td align=\"center\">"+respone[i].s_state+"</td></tr></tbody>");
+				}
+		    }
+		});
+	}
+	setTimeout("loading()", 10);
+	$(function(){
+		$("#return").hide();
+		$("#ok").hide();
+		$("#return").click(function(){
+			$("#add").hide();
+			$("#s").show();
+			$("#return").hide();
+			$("#ok").hide();
+			$("#paging").show();
+		});
+		$("#input").click(function(){
+			if($("#select").children("button").length==0){
+				$("#select").append("<button class=\"btn btn-sm btn-alt m-r-5 col-md-1\" style=\"position: absolute;right:5%\">查询</button>");
+			}
+		});
+		$("#input").blur(function(){
+			$("#input").val("");
+			$("#select").children("button").remove();
+		});
+		
+		$("#add").hide();
+		$("#staffAdd").click(function(){
+			if ($("#s_name").val()!="") {
+				$("#s_name").val("");
+				$("#s_man").children().children().removeClass("checked");
+				$("#s_women").children().children().removeClass("checked");
+				$("#s_ident").val("");
+				$("#p_id").val("");
+				$("#s_phone").val("");
+				$("#s_mail").val("");
+				$("#s_education").children(":eq(0)").prop("selected","selected");
+				$("#s_clip").val("");
+				$("#s_address").val("");
+				$("#delete").trigger("click");
+			}
+			//var bgImg=$("body").css("backgroundImage");
+			/*if ($("#head").css("height")=="300px") {
+				$("#head").css("height","57px");
+				$("#s").show();
+				$("#paging").show();
+				return false;
+			}
+			$("#head").css("height","300px");
+			$("#s").hide();
+			$("#paging").hide();*/
+			
+			$("#return").show();
+			$("#ok").show();
+			$("#add").show();
+			$("#s").hide();
+			$("#paging").hide();
+			$.post("${pageContext.request.contextPath}/getAllPosition.do",null,function(response){
+				for (var i = 0; i < response.length; i++) {
+					$("#p_id").append("<option class=\"form-control input-sm\" style=\"color: black\" value="+response[i].p_id+">"+response[i].p_name+"</option>");
+				}
+			},"json");
+		});
+		$("#delete").click(function(){
+			$("#s_sex").css("top","34%");
+			$("#file").css("top","38%");
+			$("#s_identitycard").css("margin-top","8%");
+		});
+	});
+	function checkFile(){
+		if ($("#file").attr("class")=="fileupload fileupload-new") {
+			$("#show").hide();
+			$("#btn").css({position:"absolute",left:"-76px"});
+		}
+		if ($("#file").attr("class")=="fileupload fileupload-exists") {
+			$("#show").show();
+			$("#file").css("top","32%");
+			$("#s_sex").css("top","29%");
+			$("#s_identitycard").css("margin-top","20%");
+			$("#btn").css("left","0px");
+		}
+	}
+	setInterval("checkFile()",10);
+	//增加员工
+	$("#ok").click(function(){
+		var formData=new FormData();
+		formData.append("s_name",$("#s_name").val());
+		formData.append("p_id",$("#p_id").val());
+		formData.append("s_sex",$("#s_s").val());
+		formData.append("image",$("#s_photo")[0].files[0]);
+		formData.append("s_identityCard",$("#s_ident").val());
+		formData.append("s_phone",$("#s_phone").val());
+		formData.append("s_mail",$("#s_mail").val());
+		formData.append("s_education",$("#s_education").val());
+		formData.append("s_clip",$("#s_clip").val());
+		formData.append("s_address",$("#s_address").val());
+		 $.ajax({
+		      url:'${pageContext.request.contextPath}/addStaff.do',
+		      type:'post',
+		      cache:false,
+		      data:formData,
+		      processData:false,
+		      contentType:false,
+		      success:function(response){
+		    	if (response==true) {
+		    		$("#add").hide();
+					setTimeout("loading();",10);
+					$("#s").show();
+					$("#s").html("");
+					$("#s").append("<thead><tr><th>id</th><th>员工编号</th><th>员工姓名</th><th>员工性别</th><th>员工职位</th><th>员工头像</th><th>员工身份证号</th><th>联系方式</th><th>邮箱</th><th>学历</th><th>卡号</th><th>地址</th><th>员工状态 </th></tr></thead>");
+					$("#return").hide();
+					$("#ok").hide();
+				}
+		      },
+		      error:function(response){
+		    	  alert("err");
+		      }  
+		});
+	});
+</script>
+</body>
+</html>
+
